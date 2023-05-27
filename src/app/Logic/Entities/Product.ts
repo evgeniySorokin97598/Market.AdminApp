@@ -23,6 +23,7 @@ export class CommentEntity{
 }
 
 export class CharacteristicType{
+   public position:number  = 1;
    public name:string = "";
    public charastitics: Charastitic [] =  [];
 }

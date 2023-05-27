@@ -18,7 +18,8 @@ import { BaseService } from 'src/app/Logic/Services/BaseService';
 })
 export class EditProductComponent implements OnInit {
  
-  private _typeCharacteristic: CharacteristicType = new CharacteristicType();public get typeCharacteristic(): CharacteristicType {
+  private _typeCharacteristic: CharacteristicType = new CharacteristicType();
+  public get typeCharacteristic(): CharacteristicType {
     return this._typeCharacteristic;
   }
   @Input()
@@ -33,7 +34,7 @@ public set typeCharacteristic(value: CharacteristicType) {
    
    
   //positionOptions: TooltipPosition[] = ['below', 'above', 'left', 'right'];
-  displayedColumns: string[] = ['name', 'text'   ];
+  displayedColumns: string[] = ['name', 'text' ,'position'  ];
   dataToDisplay = [...this.typeCharacteristic.charastitics];
   dataSource = new ExampleDataSource(this.dataToDisplay);
   
@@ -51,7 +52,13 @@ public set typeCharacteristic(value: CharacteristicType) {
     this.dataSource.setData(this.dataToDisplay);
   }
 
-  removeData() {
+  removeData(charc:Charastitic) {
+    
+      const index = this.dataToDisplay.indexOf(charc, 0);
+      if (index > -1) {
+        this.dataToDisplay.splice(index, 0);
+      }
+
     this.dataToDisplay = this.dataToDisplay.slice(0, -1);
     this.dataSource.setData(this.dataToDisplay);
   }

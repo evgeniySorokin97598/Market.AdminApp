@@ -39,7 +39,9 @@ export class ProductPageComponent implements OnInit {
     this.Product.id = s;
     console.log(this.Product.id);
     this.images.push(this.Product.image);
-   
+    let t = new CharacteristicType();
+    t.name = "1111";
+    this.Product.typesCharacteristics.push(t);
     this.comment.productId = this.Product.id;
  
   }
@@ -48,9 +50,10 @@ export class ProductPageComponent implements OnInit {
     this._service.SendComment(this.comment);
 
   }
-  addData(type:CharacteristicType, ) {
-    
-    type.charastitics.push(new Charastitic());
+  addData(name:string, ) {
+    let t = new CharacteristicType();
+    t.name = name;
+    this.Product.typesCharacteristics.push(t);
     //this.dataSource.push(ELEMENT_DATA[randomElementIndex]);
      
     //table.renderRows();
