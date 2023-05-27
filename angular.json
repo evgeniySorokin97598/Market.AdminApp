@@ -27,6 +27,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
               "src/styles.css"
             ],
@@ -104,5 +105,7 @@
       }
     }
   },
-  "defaultProject": "AdminApp"
+  "cli": {
+    "analytics": "d3b4d112-48a6-46f6-beb3-6ac4ce906fae"
+  }
 }
