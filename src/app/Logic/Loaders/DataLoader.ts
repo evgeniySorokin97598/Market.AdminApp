@@ -1,6 +1,7 @@
 import { Category, SubCategory } from "../Entities/Category";
 import { CommentEntity, Product } from "../Entities/Product";
 import { HttpClientHelper } from "../Helpers/HttpClientHelper";
+import { AddCharecteristicsRequest } from "../Requests/AddCharecteristics";
 import { ConfigurationService } from "../Services/ConfigService";
 
 export class DataLoader{
@@ -79,5 +80,10 @@ export class DataLoader{
         console.log("commentId: " + commentId )
         let url:string = this._apiUrl+ 'Comments/Remove?id=' + commentId;
         await this._helper.DeleteRequest(url,null);
+    }
+    public async AddCharectiristics(request: AddCharecteristicsRequest ){
+        await this.Init();
+        let url:string = this._apiUrl+ 'Products/AddCharectiristics';
+        await this._helper.PostRequest(url,request);
     }
 }

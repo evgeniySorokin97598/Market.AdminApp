@@ -29,6 +29,7 @@ export class CharacteristicType{
 }
 
 export class Charastitic{
+   public charastiticId:number = 0;
    public name:string = "";
    public text: string = "";
 }

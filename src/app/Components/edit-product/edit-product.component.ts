@@ -6,6 +6,7 @@ import { TooltipPosition } from '@angular/material/tooltip';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, ReplaySubject } from 'rxjs';
 import { CharacteristicType, Charastitic, Product } from 'src/app/Logic/Entities/Product';
+import { AddCharecteristicsRequest } from 'src/app/Logic/Requests/AddCharecteristics';
 import { BaseService } from 'src/app/Logic/Services/BaseService';
 
 
@@ -16,12 +17,16 @@ import { BaseService } from 'src/app/Logic/Services/BaseService';
  
    
 })
+
 export class EditProductComponent implements OnInit {
- 
+  private removeid:number[] = []; /// id характеристик которые нужно удалить
   private _typeCharacteristic: CharacteristicType = new CharacteristicType();
   public get typeCharacteristic(): CharacteristicType {
     return this._typeCharacteristic;
   }
+
+ @Input() public ProductId:number = 0;
+
   @Input()
 public set typeCharacteristic(value: CharacteristicType) {
     this._typeCharacteristic = value;
@@ -30,6 +35,18 @@ public set typeCharacteristic(value: CharacteristicType) {
       this.dataSource.setData(this.dataToDisplay)
     })
   }
+
+  public async Save()
+  {
+    let request:AddCharecteristicsRequest = new AddCharecteristicsRequest();
+    request.name = this.typeCharacteristic.name;
+    request.productId = this.ProductId;
+    request.charastitics = this._typeCharacteristic.charastitics;
+    request.removeId = this.removeid;
+    this.removeid = [];
+    await this._service.AddCharectiristics(request);
+  }
+
 ; ///массив с характеристиками товара
    
    
@@ -47,12 +64,17 @@ public set typeCharacteristic(value: CharacteristicType) {
      
   }
   addData() {
-    this.dataToDisplay.push(new Charastitic());
+    let t = new Charastitic();
+    this.dataToDisplay.push(t);
+    this._typeCharacteristic.charastitics.push(t);
       this.dataSource.setData(this.dataToDisplay)
     this.dataSource.setData(this.dataToDisplay);
   }
 
-  removeData(charc:Charastitic) {
+
+  
+  removeData(charc:Charastitic) 
+  {
     
       const index = this.dataToDisplay.indexOf(charc, 0);
       if (index > -1) {
@@ -61,6 +83,7 @@ public set typeCharacteristic(value: CharacteristicType) {
 
     this.dataToDisplay = this.dataToDisplay.slice(0, -1);
     this.dataSource.setData(this.dataToDisplay);
+    this.removeid.push(charc.charastiticId);
   }
 
 }

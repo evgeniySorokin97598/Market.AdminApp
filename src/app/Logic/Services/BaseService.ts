@@ -4,6 +4,7 @@ import { CommentEntity, Product } from "../Entities/Product";
 import { HttpClientHelper } from "../Helpers/HttpClientHelper";
 import { DataLoader } from "../Loaders/DataLoader";
 import { ConfigurationService } from "./ConfigService";
+import { AddCharecteristicsRequest } from "../Requests/AddCharecteristics";
 
 @Injectable()
 export class BaseService{
@@ -47,5 +48,9 @@ export class BaseService{
     }
     public async RemoveComment(commentId : number){
         return await this._dataLoader.RemoveComment(commentId);
+    }
+    ////TODO: переименовать, этот метод удаляет, обновляет и изменяет хар-ки на бэкэнде
+    public async AddCharectiristics(request: AddCharecteristicsRequest ){
+        return await this._dataLoader.AddCharectiristics(request);
     }
 }

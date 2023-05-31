@@ -47,7 +47,7 @@
                         <mat-tab-group     mat-stretch-tabs="true" mat-align-tabs="start">
                             <mat-tab *ngFor="let type of Product.typesCharacteristics" label="{{type.name}}"   > 
                                 <div  >
-                                    <app-edit-product [typeCharacteristic] = "type" ></app-edit-product>
+                                    <app-edit-product [typeCharacteristic] = "type" [ProductId] = "Product.id"  ></app-edit-product>
                                </div>
                             </mat-tab>
                         </mat-tab-group>

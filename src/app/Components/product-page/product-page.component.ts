@@ -48,8 +48,11 @@ export class ProductPageComponent implements OnInit {
 
   async SendComment(){
     this._service.SendComment(this.comment);
-
   }
+  async AddCharectiristic(){
+    
+  }
+
   addData(name:string, ) {
     let t = new CharacteristicType();
     t.name = name;
