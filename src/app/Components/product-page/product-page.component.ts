@@ -23,7 +23,7 @@ export class ProductPageComponent implements OnInit {
   images:string[] = [];
   currentRate:number = 2;
   comment:CommentEntity = new CommentEntity();
-   
+  public newCharacteristicType:string = "";
   
   constructor(private _router: ActivatedRoute,private _service: BaseService,private _identetyService :IdentetyService, config: NgbRatingConfig, private helper:ProductsHelper,private modalService: NgbModal,private _router2: Router) { 
  
@@ -39,9 +39,8 @@ export class ProductPageComponent implements OnInit {
     this.Product.id = s;
     console.log(this.Product.id);
     this.images.push(this.Product.image);
-    let t = new CharacteristicType();
-    t.name = "1111";
-    this.Product.typesCharacteristics.push(t);
+ 
+     
     this.comment.productId = this.Product.id;
  
   }
@@ -53,9 +52,9 @@ export class ProductPageComponent implements OnInit {
     
   }
 
-  addData(name:string, ) {
+  addData() {
     let t = new CharacteristicType();
-    t.name = name;
+    t.name = this.newCharacteristicType;
     this.Product.typesCharacteristics.push(t);
     //this.dataSource.push(ELEMENT_DATA[randomElementIndex]);
      

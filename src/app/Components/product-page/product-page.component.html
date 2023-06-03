@@ -1,17 +1,12 @@
  
 
 <div class="wrapper" >
-     
-
-    
         <div class="headerBox">
             
             <span  style="margin-left: 10px;">{{Product.name}}</span>
 
         </div>
-        
         <div class="box2">
-            
             <ngb-carousel *ngIf="images" >
                 <ng-template ngbSlide >
                     <div   >
@@ -22,15 +17,26 @@
                 
             </ngb-carousel>
             <p class="price" >{{Product.price}} ₽</p>
-             
+</div>
+         
 
+<ng-template #content2 let-modal  >
+    <div class="modal-header" style="background-color: #ACA9A9;">
+        <h4 class="modal-title" id="modal-basic-title">Новая хар-ка товара</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body" style="background-color: #ACA9A9;" >
+        <mat-form-field class="example-form-field">
+            <mat-label>название</mat-label>
+            <input matInput type="text" [(ngModel)] = "newCharacteristicType">
+            
+          </mat-form-field>
            
-            
-            
-        </div>
-         
-
-         
+    </div>
+    <div class="modal-footer" style="background-color: #ACA9A9;">
+        <button mat-raised-button color="primary"  style="margin-right:auto" (click) = "addData();modal.dismiss('Cross click')" >добавить</button>
+    </div>
+</ng-template>
      
     <div class="box4"><div >
         
@@ -39,8 +45,8 @@
             
 
                   <mat-tab label="Характеристики"   > 
-                    <button mat-raised-button color="primary"    (click) = "addData('sfbdfb')">
-                       добавить характеристику <mat-icon >add</mat-icon>
+                    <button mat-raised-button color="primary"  (click) = "open(content2)"  >
+                       добавить характеристику  <mat-icon >add</mat-icon>
                    </button>
                     
                     <div  >

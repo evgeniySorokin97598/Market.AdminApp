@@ -14,8 +14,6 @@ import { BaseService } from 'src/app/Logic/Services/BaseService';
   selector: 'app-edit-product',
   templateUrl: './edit-product.component.html',
   styleUrls: ['./edit-product.component.css'],
- 
-   
 })
 
 export class EditProductComponent implements OnInit {
@@ -30,7 +28,7 @@ export class EditProductComponent implements OnInit {
   @Input()
 public set typeCharacteristic(value: CharacteristicType) {
     this._typeCharacteristic = value;
-    value.charastitics.forEach(p => {
+      value.charastitics.forEach(p => {
       this.dataToDisplay.push(p);
       this.dataSource.setData(this.dataToDisplay)
     })
@@ -43,8 +41,8 @@ public set typeCharacteristic(value: CharacteristicType) {
     request.productId = this.ProductId;
     request.charastitics = this._typeCharacteristic.charastitics;
     request.removeId = this.removeid;
-    this.removeid = [];
     await this._service.AddCharectiristics(request);
+    this.removeid = [];
   }
 
 ; ///массив с характеристиками товара
@@ -76,14 +74,12 @@ public set typeCharacteristic(value: CharacteristicType) {
   removeData(charc:Charastitic) 
   {
     
-      const index = this.dataToDisplay.indexOf(charc, 0);
-      if (index > -1) {
-        this.dataToDisplay.splice(index, 0);
-      }
-
-    this.dataToDisplay = this.dataToDisplay.slice(0, -1);
+    const index = this.dataToDisplay.indexOf(charc);
+     
+    this.dataToDisplay = this.dataToDisplay.filter((e, i) => e.charastiticId !== charc.charastiticId);
     this.dataSource.setData(this.dataToDisplay);
     this.removeid.push(charc.charastiticId);
+    
   }
 
 }
